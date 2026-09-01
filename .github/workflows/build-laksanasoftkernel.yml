@@ -2,11 +2,9 @@ name: Build Laksanasoft NetHunter Kernel (beyond2lte)
 
 on:
   workflow_dispatch:
-    inputs:
-      branch:
-        description: 'Branch to build'
-        required: true
-        default: 'nethunter-lineage-23.2'
+  push:
+    branches:
+      - main
 
 jobs:
   build-kernel:
@@ -45,7 +43,7 @@ jobs:
 
       - name: Clone NetHunter Kernel Source
         run: |
-          git clone --depth=1 -b ${{ github.event.inputs.branch || 'nethunter-lineage-23.2' }} https://github.com/V0lk3n/nethunter_kernel_samsung_exynos9820.git $GITHUB_WORKSPACE/kernel
+          git clone --depth=1 -b nethunter-lineage-23.2 https://github.com/V0lk3n/nethunter_kernel_samsung_exynos9820.git $GITHUB_WORKSPACE/kernel
 
       - name: Configure NetHunter Defconfig
         run: |
